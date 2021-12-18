@@ -2,10 +2,21 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CPW2: Web Storage</title>
+    <style>
+      @font-face {
+          font-family: 'Bradley Hand';
+          src: url('./fonts/bradley-hand-itc.ttf') format('truetype');
+      }
+      
+      @font-face {
+          font-family: 'Monaco';
+          src: url('./fonts/Monaco.woff') format('woff');
+      }
+    </style>
   </head>
   <body onload="load()">
     <p id="text">Web storage</p>
@@ -14,6 +25,11 @@
     <input type="color" id="color" onblur="changeColor()" />
     <br />
     <label for="font">Fonte do título do fundo: </label>
+    <select name="font" id="font" onchange="changeFont()">
+      <option value="Arial">Arial</option>
+      <option value="Monaco">Monaco</option>
+      <option value="Bradley Hand">Bradley Hand</option>
+    </select>
     <!--
       1 - Implemente um HTML select para trocar a fonte do texto Web Storage que, nesse projeto,
       está contido em um parágrafo. Algumas regras devem ser observadas:
@@ -44,6 +60,11 @@
          * escolhido no no local *localStorage* sempre que o usuário selecionar
          * o tipo da fonte por meio do HTML select.
          */
+        let inputFont = document.getElementById("font");
+        document.getElementById("text").style.fontFamily = inputFont.value;
+        // alert(`A fonte agora é ${inputFont.value}, caraio!`);
+        // Armazena no localStorage
+        localStorage.setItem("font", inputFont.value);
       }
 
       /**
@@ -51,6 +72,7 @@
        */
       function load() {
         document.body.style.backgroundColor = localStorage.getItem("color");
+        document.getElementById("text").style.font = localStorage.getItem("font");
         /**
          * 3 - Altere o método `load` para recuperar o nome da fonte do *localStorage* e
          * estilizar o texto `Web Storage`
