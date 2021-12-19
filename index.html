@@ -72,7 +72,9 @@
        */
       function load() {
         document.body.style.backgroundColor = localStorage.getItem("color");
-        document.getElementById("text").style.font = localStorage.getItem("font");
+        console.log(localStorage.getItem("color"));
+        document.getElementById("text").style.fontFamily = localStorage.getItem("font");
+        console.log(localStorage.getItem("font"));
         /**
          * 3 - Altere o método `load` para recuperar o nome da fonte do *localStorage* e
          * estilizar o texto `Web Storage`
